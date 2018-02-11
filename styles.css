@@ -1,0 +1,11 @@
+*{
+    outline: 2px solid #000;
+}
+
+.form-row{
+    justify-content: center;
+}
+
+form{
+    width: 500px;
+}

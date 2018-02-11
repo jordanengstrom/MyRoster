@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <title>Engstrom NFL Roster</title>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <h1>Jordan's NFL Roster</h1>
+        </div>
+        <div class="row" id="my-team">
+            <!-- my team will be dynamically drawn here  -->
+        </div>
+        <div class="row form-row">
+            <form onsubmit="app.controllers.playerCtrl.formSubmission()">
+                <div class="form-group">
+                    <label for="player team">Team</label>
+                    <input id="team" type="text" class="form-control" aria-describedby="team name" placeholder="Enter team name">
+                </div>
+                <div class="form-group">
+                    <label for="player name">Name</label>
+                    <input id="name" type="text" class="form-control" aria-describedby="player name" placeholder="Enter player name">
+                </div>
+                <div class="form-group">
+                    <label for="player position">Position</label>
+                    <input id="position" type="text" class="form-control" aria-describedby="player position" placeholder="Enter position abbreviation     Examples: QB, WR, LB, DB">
+                </div>
+                <button onclick="app.controllers.playerCtrl.formSubmission()" type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <div class="row">
+            <h1>Player Roster</h1>
+        </div>
+        <div class="row">
+            <div class="player-card card-deck player-roster" id="loc-cards">
+                <!-- player cards are dynamically drawn here based on search results -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+
+    <script src="player-service-2.js"></script>
+    <script src="player-controller-2.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
