@@ -1,18 +1,19 @@
-function PlayerService() {
+function PlayerService(callback) {
 
     var playersData = [];
     var searchResults = [];
     var myTeam = [];
 
-    console.log(1)
-    this.loadPlayersData = function (callback) {
-        console.log(2)
+    function loadPlayersData() {
+
         //Lets check the localstorage for the data before making the call.
         //Ideally if a user has already used your site 
         //we can cut down on the load time by saving and pulling from localstorage 
+
         var localData = localStorage.getItem('playersData');
         if (localData) {
             playersData = JSON.parse(localData);
+            console.log(playersData);
             return callback();
             //return will short-circuit the loadPlayersData function
             //this will prevent the code below from ever executing
@@ -28,44 +29,58 @@ function PlayerService() {
             console.log('Writing Player Data to localStorage')
             localStorage.setItem('playersData', JSON.stringify(playersData))
             console.log('Finished Writing Player Data to localStorage')
-            // callback()
+            callback()
         });
     }
-
+    loadPlayersData(); //call the function above every time we create a new service
 
     this.getPlayersByTeam = function (teamName) {
-        var searchResults = playersData.forEach(function (player) {
-            if (player.team === playersData.pro_team) {
-                return true;
+        searchResults = [];
+        playersData.forEach(function (player, index) {
+            if (player.pro_team === teamName) {
+                searchResults.push(player);
             }
         })
+        return searchResults;
     }
 
     this.getPlayersByName = function (playerName) {
-        var searchResults = playersData.forEach(function (player) {
-            if (player.firstname === playersData.firstname ||
-                player.lastname === playersData.lastname ||
-                player.fullname === playersData.fullname) {
-                return true;
+        searchResults = [];
+        playersData.forEach(function (player, index) {
+            if (player.fullname.toLowerCase().includes(playerName.toLowerCase())) {
+                searchResults.push(player);
             }
         })
+        return searchResults;
     }
 
     this.getPlayersByPosition = function (position) {
-        var searchResults = playersData.forEach(function (player) {
-            if (player.position === playersData.position) {
-                return true;
+        searchResults = [];
+        playersData.forEach(function (player, index) {
+            if (player.position === position) {
+                searchResults.push(player);
             }
         })
+        return searchResults;
+    }
+
+    this.getSearchResults = function () {
+        return searchResults;
+    }
+
+    this.getMyTeam = function () {
+        return myTeam;
     }
 
     this.addToTeam = function (id) {
-        for (var i = 0; i < searchResults.length; i++) {
-            var teamMember = searchResults[i];
-            if (teamMember.id == id) {
-                myTeam.push(teamMember);
+        for (var i = 0; i < playersData.length; i++) {
+            var player = playersData[i];
+            if (player.id == id) {
+                myTeam.push(player)
             }
         }
+        console.log(myTeam);
+        return myTeam;
     }
 
     this.removeFromTeam = function (id) {
@@ -75,10 +90,7 @@ function PlayerService() {
                 myTeam.splice(myTeam.indexOf(id));
             }
         }
-    }
-
-    this.getMyTeam = function () {
+        console.log(myTeam);
         return myTeam;
     }
-
-}
+} 
