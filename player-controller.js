@@ -2,7 +2,7 @@ PlayerController = function PlayerController() {
     var playerService = new PlayerService(ready);
     var loading = true; //Start the spinner
 
-    
+
     function ready() {
         loading = false; //stop the spinner
 
@@ -12,7 +12,7 @@ PlayerController = function PlayerController() {
         })
     }
 
-    function drawMyTeam (myTeam) {
+    function drawMyTeam(myTeam) {
         var myTeam = playerService.getMyTeam();
         var myTeamElem = document.getElementById("my-team");
         var template = '';
@@ -32,14 +32,13 @@ PlayerController = function PlayerController() {
         myTeamElem.innerHTML = template;
     }
 
-    function drawSearchResults(searchResults) {  
+    function drawSearchResults(searchResults) {
         var searchResults = playerService.getSearchResults();
         var searchElem = document.getElementById("searched-cards");
         var template = '';
-        for(var i = 0; i < searchResults.length; i++){
-            var aResult = searchResults[i];
-            template +=`
-            <div class="card">
+        for (var i = 0; i < searchResults.length; i++) {
+            aResult = searchResults[i];
+            template += `
                 <div class="col-sm-3 card">
                 <img class="card-img-top" src="http://s.nflcdn.com/static/content/public/image/fantasy/transparent/200x200/" alt="Card image cap">
                     <div class="card-body">
@@ -48,8 +47,7 @@ PlayerController = function PlayerController() {
                      <p class="card-text">Team: ${aResult.pro_team}</p>
                      <button type="button" class="btn btn-success" onclick="app.controllers.playerCtrl.addToTeam(${aResult.id})">Add to Team</button>
                     </div>
-                </div>
-            </div>`
+                </div>`
         }
         searchElem.innerHTML = template;
     }
@@ -72,7 +70,7 @@ PlayerController = function PlayerController() {
     this.getPlayersByPosition = function (e) {
         e.preventDefault();
         var position = e.target.position.value;
-        playerService.getPlayersByName(position)
+        playerService.getPlayersByPosition(position);
         drawSearchResults();
     }
 

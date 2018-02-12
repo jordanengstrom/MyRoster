@@ -23,20 +23,20 @@
             <form onsubmit="app.controllers.playerCtrl.getPlayersByTeam(event)">
                 <div class="form-group">
                     <label for="player team">Team</label>
-                    <input name="team" id="team" type="text" class="form-control" aria-describedby="team name" placeholder="Enter team name">
+                    <input name="team" id="team" type="text" class="form-control" aria-describedby="team name" placeholder="Enter team abbreviation     Examples: SF, MIN, MIA, NYG">
                 </div>
             </form>
         </div>
         <div class="row">
-            <form onsubmit="app.controllers.playerCrtl.getPlayersByName(event)">
+            <form onsubmit="app.controllers.playerCtrl.getPlayersByName(event)">
                 <div class="form-group">
                     <label for="player name">Name</label>
-                    <input name="name" id="name" type="text" class="form-control" aria-describedby="player name" placeholder="Enter player name">
+                    <input name="fullname" id="name" type="text" class="form-control" aria-describedby="player name" placeholder="Enter player name">
                 </div>
             </form>
         </div>
         <div class="row">
-            <form onsubmit="app.controllers.playerCrtl.getPlayersByPosition(event)">
+            <form onsubmit="app.controllers.playerCtrl.getPlayersByPosition(event)">
                 <div class="form-group">
                     <label for="player position">Position</label>
                     <input name="position" id="position" type="text" class="form-control" aria-describedby="player position" placeholder="Enter position abbreviation     Examples: QB, WR, LB, DB">
@@ -47,7 +47,7 @@
         <div class="row">
             <h1>Player Roster</h1>
         </div>
-        <div class="carddeck" id="searched-cards">
+        <div class="" id="searched-cards">
             <!-- player cards are dynamically drawn here based on search results -->
         </div>
     </div>

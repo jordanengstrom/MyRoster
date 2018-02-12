@@ -87,7 +87,7 @@ function PlayerService(callback) {
         for (var i = 0; i < myTeam.length; i++) {
             var delMem = myTeam[i];
             if (delMem.id == id) {
-                myTeam.splice(myTeam.indexOf(id));
+                myTeam.splice(myTeam.indexOf(delMem),1);
             }
         }
         console.log(myTeam);
